@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabriela Obando Nazate — Portafolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #50C88C;
+      --green-dim: rgba(80,200,140,0.15);
+      --green-border: rgba(80,200,140,0.25);
+      --bg: #0B0E17;
+      --bg2: #111520;
+      --bg3: #161b28;
+      --text: #F0EDE6;
+      --muted: #8A9BB0;
+      --soft: #C8D4E0;
+      --mono: 'Space Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,14,23,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(80,200,140,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 28px; height: 64px;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 15px;
+      color: var(--green); letter-spacing: 0.1em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 13px;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 28px; max-width: 1000px; margin: 0 auto; }
+    section:first-of-type { padding-top: 140px; }
+
+    .section-tag {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--green);
+      text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-tag::before {
+      content: ''; display: inline-block;
+      width: 24px; height: 1px; background: var(--green);
+    }
+    h2.section-title {
+      font-size: 44px; font-weight: 800;
+      letter-spacing: -1px; margin-bottom: 48px;
+      line-height: 1.1;
+    }
+    h2.section-title span { color: var(--green); }
+
+    .divider {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(80,200,140,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,200,140,0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .hero-glow {
+      position: absolute; width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(80,200,140,0.08) 0%, transparent 70%);
+      right: -100px; top: 50%; transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-tag {
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.15em; color: var(--green);
+      text-transform: uppercase; margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before { content: ''; width: 20px; height: 1px; background: var(--green); }
+    .dot-pulse {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+    }
+    h1.hero-name {
+      font-size: clamp(52px, 8vw, 80px);
+      font-weight: 800; line-height: 1.0;
+      letter-spacing: -2px; margin-bottom: 8px;
+    }
+    h1.hero-name span { color: var(--green); }
+    .hero-role {
+      font-family: var(--mono); font-size: 16px;
+      color: var(--muted); margin-bottom: 28px;
+      letter-spacing: 0.06em;
+    }
+    .hero-bio {
+      font-size: 19px; line-height: 1.8;
+      color: var(--soft); max-width: 600px;
+      margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--mono); font-size: 14px;
+      background: var(--green); color: #0B0E17;
+      padding: 13px 28px; border-radius: 2px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 700; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #6ED9A0; }
+    .btn-outline {
+      font-family: var(--mono); font-size: 14px;
+      border: 1px solid var(--green-border); color: var(--green);
+      padding: 13px 28px; border-radius: 2px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-outline:hover { background: var(--green-dim); }
+
+    /* ── SOBRE MÍ ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+    }
+    .about-text p {
+      font-size: 17px; line-height: 1.85;
+      color: var(--soft); margin-bottom: 20px;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .stat-card {
+      background: var(--green-dim);
+      border: 1px solid var(--green-border);
+      border-radius: 4px; padding: 20px;
+    }
+    .stat-num {
+      font-size: 32px; font-weight: 800;
+      color: var(--green); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--muted); letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .about-contact { display: flex; flex-direction: column; gap: 14px; }
+    .contact-line {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--mono); font-size: 14px;
+      color: var(--soft);
+    }
+    .contact-line .icon { color: var(--green); font-size: 16px; }
+    .contact-line a { color: var(--soft); text-decoration: none; }
+    .contact-line a:hover { color: var(--green); }
+
+    /* ── COMPETENCIAS ── */
+    .skills-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .skill-group-title {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--green);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .skill-bar-row { margin-bottom: 14px; }
+    .skill-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 15px; color: var(--soft);
+      margin-bottom: 6px;
+    }
+    .skill-bar-label span { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .skill-bar-track {
+      height: 4px; background: rgba(255,255,255,0.07);
+      border-radius: 2px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; background: var(--green);
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-family: var(--mono); font-size: 13px;
+      padding: 7px 16px;
+      border: 1px solid var(--green-border);
+      border-radius: 2px; color: #A8C4B0;
+      background: rgba(80,200,140,0.06);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── EXPERIENCIA ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(80,200,140,0.2);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 40px;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -32px; top: 6px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(80,200,140,0.15);
+    }
+    .tl-date {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--green); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .tl-role {
+      font-size: 20px; font-weight: 700;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .tl-org {
+      font-family: var(--mono); font-size: 14px;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .tl-desc {
+      font-size: 16px; color: var(--soft); line-height: 1.75;
+    }
+
+    /* ── FORMACIÓN ── */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .edu-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px; padding: 28px;
+      transition: border-color 0.2s;
+    }
+    .edu-card:hover { border-color: var(--green-border); }
+    .edu-year {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--green); margin-bottom: 10px;
+      letter-spacing: 0.1em;
+    }
+    .edu-degree {
+      font-size: 18px; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .edu-school {
+      font-family: var(--mono); font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── CURSOS ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .course-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px; padding: 20px 22px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .course-card:hover { border-color: var(--green-border); }
+    .course-year {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--green); letter-spacing: 0.08em;
+      min-width: 40px; padding-top: 2px;
+    }
+    .course-info {}
+    .course-name {
+      font-size: 15px; font-weight: 700;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .course-org {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── ACTIVIDADES ── */
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .act-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-left: 3px solid var(--green);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 20px;
+    }
+    .act-year {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--green); margin-bottom: 6px;
+    }
+    .act-name {
+      font-size: 15px; font-weight: 700;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .act-detail {
+      font-family: var(--mono); font-size: 12px;
+      color: var(--muted); line-height: 1.5;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      text-align: center;
+    }
+    .contact-box {
+      max-width: 600px; margin: 0 auto;
+      background: var(--bg2);
+      border: 1px solid var(--green-border);
+      border-radius: 4px; padding: 52px 48px;
+    }
+    .contact-box p {
+      font-size: 17px; color: var(--soft);
+      margin-bottom: 36px; line-height: 1.7;
+    }
+    .contact-links {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 12px;
+    }
+    .contact-pill {
+      font-family: var(--mono); font-size: 13px;
+      padding: 12px 22px;
+      border: 1px solid var(--green-border);
+      border-radius: 2px; color: var(--soft);
+      text-decoration: none; display: flex;
+      align-items: center; gap: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .contact-pill:hover { background: var(--green-dim); color: var(--green); }
+    .contact-pill .pill-icon { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-family: var(--mono); font-size: 13px;
+      color: var(--muted);
+    }
+    footer span { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { gap: 16px; }
+      section { padding: 80px 16px; }
+      .about-grid, .skills-wrapper, .edu-grid { grid-template-columns: 1fr; gap: 40px; }
+      h1.hero-name { font-size: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero-grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">&lt;gabriela.dev /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre mí</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#formacion">Formación</a></li>
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot-pulse"></span> Disponible para proyectos
+    </div>
+    <h1 class="hero-name">Gabriela<br><span>Obando</span><br>Nazate</h1>
+    <div class="hero-role">Ingeniera en Software &nbsp;·&nbsp; Web Developer &nbsp;·&nbsp; Ibarra, Ecuador</div>
+    <p class="hero-bio">
+      Desarrollo interfaces web modernas y gestiono plataformas digitales con enfoque en la experiencia del usuario. Comprometida con el aprendizaje continuo y orientada a resultados que realmente importan.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary">Contáctame →</a>
+      <a href="#experiencia" class="btn-outline">Ver experiencia</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="section-tag">Sobre mí</div>
+  <h2 class="section-title">¿Quién soy <span>yo?</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Soy una persona organizada y comprometida con el aprendizaje y la mejora continua, habituada al trabajo bajo presión. Mi experiencia se centra en el desarrollo web con WordPress y la gestión de plataformas digitales como OJS.</p>
+      <p>Disfruto colaborar en equipo para alcanzar resultados que realmente satisfagan al usuario. Además, poseo un dominio sólido de herramientas de ofimática para la gestión eficiente de proyectos.</p>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Cursos completados</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Congresos AENIT</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Idiomas</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-contact">
+      <p style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--green); text-transform: uppercase; margin-bottom: 8px;">Datos de contacto</p>
+      <div class="contact-line">
+        <span class="icon">✉️</span>
+        <a href="mailto:rgobandon@gmail.com">rgobandon@gmail.com</a>
+      </div>
+      <div class="contact-line">
+        <span class="icon">📱</span>
+        <a href="https://wa.me/593997201130">+593 99 720 1130</a>
+      </div>
+      <div class="contact-line">
+        <span class="icon">💼</span>
+        <a href="https://linkedin.com/in/gabriela-obando-340382284" target="_blank">linkedin.com/in/gabriela-obando</a>
+      </div>
+      <div class="contact-line">
+        <span class="icon">📍</span>
+        <span>El Olivo, Ibarra — Ecuador</span>
+      </div>
+      <div class="contact-line">
+        <span class="icon">🌐</span>
+        <span>Inglés · Español</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">Competencias</div>
+  <h2 class="section-title">Mi <span>stack</span></h2>
+  <div class="skills-wrapper">
+    <div>
+      <div class="skill-group-title">Lenguajes y tecnologías</div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">HTML / CSS <span>Avanzado</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 90%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">WordPress <span>Avanzado</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 88%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">OJS <span>Avanzado</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 85%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">Python <span>Intermedio</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 72%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">SQL <span>Intermedio</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 70%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">Java <span>Intermedio</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 65%"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label">Excel <span>Avanzado</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" style="width: 85%"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-group-title">Otras habilidades</div>
+      <div class="chip-grid">
+        <span class="chip">Desarrollo web</span>
+        <span class="chip">Ciberseguridad</span>
+        <span class="chip">Ethical Hacking</span>
+        <span class="chip">Gestión de proyectos</span>
+        <span class="chip">Bases de datos</span>
+        <span class="chip">Cloud (AWS)</span>
+        <span class="chip">Ciencia de datos</span>
+        <span class="chip">ISO 9001:2015</span>
+        <span class="chip">Seguridad en internet</span>
+        <span class="chip">Trabajo en equipo</span>
+        <span class="chip">Análisis de datos</span>
+        <span class="chip">Plataformas digitales</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="section-tag">Experiencia</div>
+  <h2 class="section-title">Mi <span>trayectoria</span></h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-date">2023 — Presente</div>
+      <div class="tl-role">Diseñadora Web</div>
+      <div class="tl-org">FICA — Universidad Técnica del Norte</div>
+      <div class="tl-desc">Desarrollo y mantenimiento de sitios web para los congresos internacionales AENIT. Diseño de interfaces funcionales y visualmente atractivas para eventos académicos de alto nivel.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2023 — Presente</div>
+      <div class="tl-role">Editor Técnico</div>
+      <div class="tl-org">Revista IDEAS</div>
+      <div class="tl-desc">Gestión y administración de la plataforma editorial OJS (Open Journal Systems). Manejo del flujo editorial digital, publicación de artículos académicos y soporte a autores y revisores.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">2022</div>
+      <div class="tl-role">Capacitador</div>
+      <div class="tl-org">U.E. Teodoro Gómez de la Torre</div>
+      <div class="tl-desc">Difusión y capacitación sobre seguridad en internet dirigida a estudiantes. Creación de contenidos educativos sobre buenas prácticas digitales y prevención de riesgos en línea.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMACIÓN -->
+<section id="formacion">
+  <div class="section-tag">Formación académica</div>
+  <h2 class="section-title">Mi <span>educación</span></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2026</div>
+      <div class="edu-degree">Ingeniería en Software</div>
+      <div class="edu-school">Universidad Técnica del Norte — Ecuador</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2012</div>
+      <div class="edu-degree">Bachiller en Físico Matemático</div>
+      <div class="edu-school">Unidad Educativa Pimampiro — Ecuador</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CURSOS -->
+<section id="cursos">
+  <div class="section-tag">Certificaciones y cursos</div>
+  <h2 class="section-title">Aprendizaje <span>continuo</span></h2>
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-year">2024</div>
+      <div class="course-info">
+        <div class="course-name">Introduction to Cloud</div>
+        <div class="course-org">AWS Academy</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2024</div>
+      <div class="course-info">
+        <div class="course-name">Auditoría Interna ISO 9001:2015</div>
+        <div class="course-org">Ministerio de Trabajo</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2023</div>
+      <div class="course-info">
+        <div class="course-name">Gestión de amenazas cibernéticas</div>
+        <div class="course-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2023</div>
+      <div class="course-info">
+        <div class="course-name">Introducción a la ciencia de datos</div>
+        <div class="course-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2023</div>
+      <div class="course-info">
+        <div class="course-name">Fundamentos de análisis de datos</div>
+        <div class="course-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2022</div>
+      <div class="course-info">
+        <div class="course-name">Ethical Hacking</div>
+        <div class="course-org">Hacker Mentor</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2022</div>
+      <div class="course-info">
+        <div class="course-name">Bases de Datos — de 0 a Avanzado</div>
+        <div class="course-org">UDEMY</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2022</div>
+      <div class="course-info">
+        <div class="course-name">Python</div>
+        <div class="course-org">Club de Programación — UTN</div>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-year">2021</div>
+      <div class="course-info">
+        <div class="course-name">Ciberseguridad</div>
+        <div class="course-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACTIVIDADES -->
+<section id="actividades">
+  <div class="section-tag">Membresías y actividades</div>
+  <h2 class="section-title">Comunidad & <span>eventos</span></h2>
+  <div class="act-grid">
+    <div class="act-card">
+      <div class="act-year">2025</div>
+      <div class="act-name">VII Congreso AENIT 2025</div>
+      <div class="act-detail">UTN · 26–28 mayo 2025 · 40 horas</div>
+    </div>
+    <div class="act-card">
+      <div class="act-year">2024</div>
+      <div class="act-name">Congreso AENIT 2024</div>
+      <div class="act-detail">UTN · 19–21 junio 2024 · 40 horas</div>
+    </div>
+    <div class="act-card">
+      <div class="act-year">2023</div>
+      <div class="act-name">Congreso AENIT 2023</div>
+      <div class="act-detail">UTN · 22–24 noviembre 2023 · 40 horas</div>
+    </div>
+    <div class="act-card">
+      <div class="act-year">2023</div>
+      <div class="act-name">Club de Programación</div>
+      <div class="act-detail">Miembro y Directiva — Organización de cursos y eventos</div>
+    </div>
+    <div class="act-card">
+      <div class="act-year">2023</div>
+      <div class="act-name">Club de Ethical Hacking</div>
+      <div class="act-detail">Miembro — Asistencia a capacitaciones</div>
+    </div>
+    <div class="act-card">
+      <div class="act-year">2020</div>
+      <div class="act-name">Medios Digitales</div>
+      <div class="act-detail">UTN · Modalidad virtual · 20 horas</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-tag" style="justify-content: center;">Contacto</div>
+  <h2 class="section-title" style="text-align:center;">Hablemos de tu <span>proyecto</span></h2>
+  <div class="contact-box">
+    <p>¿Tienes una idea o un proyecto en mente? Estoy disponible para colaborar en desarrollo web, gestión de plataformas digitales o nuevos retos tecnológicos.</p>
+    <div class="contact-links">
+      <a href="mailto:rgobandon@gmail.com" class="contact-pill">
+        <span class="pill-icon">✉️</span> rgobandon@gmail.com
+      </a>
+      <a href="https://wa.me/593997201130" class="contact-pill" target="_blank">
+        <span class="pill-icon">💬</span> +593 99 720 1130
+      </a>
+      <a href="https://linkedin.com/in/gabriela-obando-340382284" class="contact-pill" target="_blank">
+        <span class="pill-icon">💼</span> LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Diseñado y desarrollado por <span>Gabriela Obando Nazate</span> · Ibarra, Ecuador · 2025
+</footer>
+
+</body>
+</html>
